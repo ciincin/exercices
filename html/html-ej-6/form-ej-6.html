@@ -17,19 +17,19 @@
 
   <body>
     <form action="#">
-      <label for="email">email</label>
+      <label for="email">Email</label>
       <input type="email" name="email" id="email" placeholder="youremail@example.com">
 
-      <label for="password">password</label>
+      <label for="password">Password</label>
       <input type="password" name="password" id="password">
 
-      <label for="fullname">fullname</label>
+      <label for="fullname">Name and Lastname</label>
       <input type="text" name="fullname" id="fullname">
 
-      <label for="dateBirth">date of bird</label>
+      <label for="dateBirth">Date of birth</label>
       <input type="date" name="dateBirth" id="dateBirth">
 
-      <label for="number">phone number</label>
+      <label for="number">Telephone number</label>
       <input type="tel" name="number" id="number">
 
       <label for="plans">Plans</label>
@@ -46,10 +46,10 @@
       <input type="checkbox" name="proPlan" id="proPlan">
 
       <label for="creditCard">Credit card</label>
-      <input type="text" name="reditCard" id="creditCard" maxlength="16">
+      <input type="text" name="creditCard" id="creditCard" maxlength="16" minlength="16">
 
       <label for="cvc">CVC</label>
-      <input type="text" name="cvc" id="cvc" maxlength="3">
+      <input type="text" name="cvc" id="cvc" maxlength="3" minlength="3">
 
       <label for="expDate">Expedition Date</label>
       <input type="month" name="expDate" id="expDate">
@@ -57,6 +57,7 @@
       <label for="billingAddress">Billing Address</label>
       <input type="text" name="billingAddress" id="billingAddress">
     
+      <br>
       <button type="submit">Submit</button>
     </form>
   </body>
