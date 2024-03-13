@@ -1,0 +1,36 @@
+h1 + p::first-letter {
+	float: left;
+	color: darkred;
+	border: 3px ridge darkgoldenrod;
+	padding: 16px;
+	background-color: gold;
+	margin: 8px;
+}
+
+
+blockquote::before {
+	background-color: rgba(0, 0, 0, .12);
+	padding: 8px;
+	content: open-quote;
+}
+
+blockquote::after {
+	background-color: rgba(0, 0, 0, .12);
+	padding: 8px;
+	content: close-quote;
+}
+
+a {
+	color: darkred;
+	text-decoration: none;
+}
+
+a:visited {
+	color: blueviolet;
+
+}
+
+a:hover, a:focus {
+	color: goldenrod;
+}
+
