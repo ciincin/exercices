@@ -1,0 +1,46 @@
+body{
+    display: grid;
+    grid-template-areas: 
+    "green green green"
+    "yellow red blue"
+    "orange orange blue";
+    margin:0;
+    gap:20px;
+}
+
+#green{
+    grid-area: green;
+    grid-column: span 4;
+    background-color: rgb(187, 236, 187);
+}
+
+#yellow{
+    grid-area: yellow;
+    grid-column: span 1;
+    background-color: rgb(246, 246, 185);
+}
+
+#orange{
+    grid-area: orange;
+    background-color: rgb(242, 211, 154);
+}
+
+#red{
+    grid-area:red;
+    background-color: rgb(247, 175, 175);
+}
+
+#blue{
+    grid-area: blue;
+    background-color: rgb(194, 220, 239);
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    background-color: aliceblue;
+    width: 50px;
+    height: 30px;
+}
