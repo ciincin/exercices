@@ -7,14 +7,13 @@ div{
 }
 
 section.screen {
-    /* border-top-right-radius: 10px;
-    border-top-left-radius: 10px; */
     height: 50px;
     display:flex;
     align-items: center;
     justify-content: right;
     padding-right: 10px;
-    background-color: rgb(129, 129, 129);
+    background-color: rgb(89, 87, 92);
+    color: white;
 }
 
 p{
@@ -25,7 +24,6 @@ p{
 }
 
 .keybinds {
-    
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     
@@ -36,11 +34,11 @@ p{
     background-color: red;
 }
 .operators {
-    background-color: grey;
+    background-color: rgb(188, 199, 209);
 }
 
 button {
     padding: 10px;
     font-size: 2em;
-    border: none;;
+    border: 1px solid rgb(152, 152, 173);
 }
