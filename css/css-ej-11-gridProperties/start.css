@@ -1,46 +1,65 @@
-body{
-    display: grid;
-    grid-template-areas: 
+html,
+body {
+  height: 500px;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
     "green green green"
     "yellow red blue"
+    "yellow red blue"
     "orange orange blue";
-    margin:0;
-    gap:20px;
+  margin: 0;
+  gap: 30px;
 }
 
-#green{
-    grid-area: green;
-    grid-column: span 4;
-    background-color: rgb(187, 236, 187);
+section {
+  padding: 20px;
 }
 
-#yellow{
-    grid-area: yellow;
-    grid-column: span 1;
-    background-color: rgb(246, 246, 185);
+p{
+    padding-bottom: 10px;
 }
 
-#orange{
-    grid-area: orange;
-    background-color: rgb(242, 211, 154);
+#green {
+  grid-area: green;
+  background-color: rgb(187, 236, 187);
 }
 
-#red{
-    grid-area:red;
-    background-color: rgb(247, 175, 175);
+#yellow {
+  grid-area: yellow;
+  background-color: rgb(246, 246, 185);
 }
 
-#blue{
-    grid-area: blue;
-    background-color: rgb(194, 220, 239);
+#orange {
+  grid-area: orange;
+  background-color: rgb(242, 211, 154);
 }
 
-ul{
-    list-style: none;
+#red {
+  grid-area: red;
+  background-color: rgb(247, 175, 175);
 }
 
-li{
-    background-color: aliceblue;
-    width: 50px;
-    height: 30px;
+#blue {
+  grid-area: blue;
+  background-color: rgb(194, 220, 239);
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;;
+}
+
+li {
+  background-color: aliceblue;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 40px;
+  width: 50px;
+  height: 40px;
 }
