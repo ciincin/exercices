@@ -6,7 +6,6 @@ p {
 main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 1px solid red;
   justify-items: center;
   padding: 20px;
   gap: 20px;
