@@ -1,95 +1,44 @@
-
-
-main {
-    border: 1px solid lightgrey;
-    border-radius: 10px;
-   
+div{
+    width: 400px;
+    border-radius:10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 10px gray;
+    
 }
 
-div {
-    border: 1px solid rgb(138, 172, 184);
-}
-
-section.result div{
-    border: 1px solid rgb(138, 172, 184);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: grey;
+section.screen {
+    height: 50px;
+    display:flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 10px;
+    background-color: rgb(89, 87, 92);
     color: white;
-    text-align: right;
-    padding: 5px;
 }
 
+p{
+    font-size: 2em;
+    padding:0;
+    margin:0;
 
-section.operations div {
-    padding: 5px;
 }
 
-section.operations {
+.keybinds {
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    text-align: center;
-    background-color: rgb(214, 221, 231);
     
 }
 
-section.content div {
-    padding: 5px;
+.result {
+    grid-row: 4 span;
+    background-color: red;
+}
+.operators {
+    background-color: rgb(188, 199, 209);
 }
 
-section.content {
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    text-align: center;
-    background-color: rgb(240, 242, 244);
-    border: 1px solid rgb(138, 172, 184);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    grid-template-areas: 
-    "number7 number8 number9 equal"
-    "number4 number5 number6 equal"
-    "number1 number2 number3 equal"
-    "number0 point AC equal";
+button {
+    padding: 10px;
+    font-size: 2em;
+    border: 1px solid rgb(152, 152, 173);
 }
-
-
-#number7{
-    grid-area: number7;
-}
-#number8{
-    grid-area: number8;
-}#number9{
-    grid-area: number9;
-}#number4{
-    grid-area: number4;
-}#number5{
-    grid-area: number5;
-}#number6{
-    grid-area: number6;
-}#number1{
-    grid-area: number1;
-}#number2{
-    grid-area: number2;
-}#number3{
-    grid-area: number3;
-}#number0{
-    grid-area: number0;
-    border-bottom-left-radius: 10px;
-}
-#point{
-    grid-area: point;
-}
-#equal{
-    grid-area: equal;
-    background-color: rgb(238, 159, 159);
-    border: 1px solid rgb(138, 172, 184);
-    border-bottom-right-radius: 10px;
-    display: flex; /* Usa flexbox */
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-}
-    
-
-
-
-
