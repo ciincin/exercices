@@ -1,29 +1,26 @@
-const isLogged = true;
+const islogged = true;
 
-let firstPromise = new Promise ((resolve,reject)=>{
-    if(isLogged){
-        const randomNumber = Math.random()
-        resolve(randomNumber.toFixed(1))
-    }else {
-        reject(new Error("User is not logged"))
+const userIsLogged = new Promise((resolve, reject) => {
+  let num = Math.random();
+  if (islogged) {
+    resolve(num);
+  } else {
+    reject(new Error(`User is not logged!`));
+  }
+});
+
+const userInfo = (number) => {
+  return new Promise((resolve, reject) => {
+    if (number > 0.5) {
+      resolve({ name: "John", age: 24 });
+    } else {
+      reject(new Error(`${number} is smaller or equal to 0.5`));
     }
-})
+  });
+};
 
-const secondPromise = (number) => {
-    return new Promise ((resolve, reject) => {
-        if (number > 0.5){
-            resolve({name: "John", age: 24})
-        } else {
-            reject(new Error("Number is not higher than 0.5"));
-        }
-    })
-} 
- 
-firstPromise
-.then((response) => secondPromise(response))
-// .then(secondPromise)
-.then((response)=>console.log(response))
-.catch((err)=> console.error(err))
-.finally(()=> console.log("This will be printed!"))
-
-// firstPromise.then((res)=> console.log(res))
+userIsLogged
+  .then(userInfo)
+  .then((val) => console.log(val))
+  .catch((err) => console.error(err))
+  .finally(()=>console.log("This will be always printed!"));
