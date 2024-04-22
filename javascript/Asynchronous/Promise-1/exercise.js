@@ -1,11 +1,11 @@
-const number = 12;
+const number = 15;
 
 const num = new Promise((resolve, reject) => {
   if (number > 10) {
-    resolve("el numero es mayor que 10");
+    resolve(`${number} is greater than 10`);
   } else {
-    reject("el número no es mayor que 10");
+    reject(`${number} is smaller or equal than 10`);
   }
 });
 
-num.then((response) => console.log(response)).catch((err) => console.error(err));
+num.then((val) => console.log(val)).catch((err) => console.error(err));
