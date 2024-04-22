@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Requests</title>
+  </head>
+  <body>
+    <h1>Network</h1>
+    <div id="data-from-function"></div>
+  </body>
+  <script>
+    async function fetchData() {
+      const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const retrievedData = await data.json();
+      
+      const divData = document.getElementById("data-from-function")
+      
+      retrievedData.forEach((item)=>{
+        if(item.completed == true){
+        const newLi = document.createElement("li");
+        newLi.textContent = `${item.id} - ${item.completed}`;
+        divData.appendChild(newLi) //es un elemento de document, como mi const tiene un document por eso vale.
+        }  
+
+      })
+    }
+
+    fetchData();
+  </script>
+</html>
