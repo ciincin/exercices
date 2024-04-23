@@ -1,7 +1,9 @@
 async function toDoList() {
   const dataToGet = await fetch("https://jsonplaceholder.typicode.com/todos");
   const toDos = await dataToGet.json();
-  console.log(toDos);
+  return toDos;
 }
 
-toDoList();
+toDoList()
+ .then((val) => console.log(val))
+ .catch((err) => console.error("fetch was failed", err))
