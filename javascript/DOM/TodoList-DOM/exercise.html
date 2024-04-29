@@ -13,7 +13,7 @@
     //get container element
     const container = document.getElementById("container");
 
-    //create ul html element and assing an id
+    //create ul html element and assign an id
     const ul = document.createElement("ul");
     ul.id = "ul";
 
@@ -27,6 +27,9 @@
       const itemTitle = toDoItem.title;
       li.textContent = `${itemId} - ${itemTitle}`;
       ul.appendChild(li);
+
+
+      //Add different colors when the task is completed(green) or incompleted(red):
 
       if (toDoItem.completed) {
         li.style.color = "green";
