@@ -5,6 +5,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
 
+  
   function updateUsername(event) {
     setUsername(event.target.value);
     console.log(username);
@@ -31,6 +32,7 @@ function Login() {
 
         <label htmlFor="password">Password:</label>
         <input
+          
           type="password"
           id="password"
           value={password}
@@ -39,12 +41,13 @@ function Login() {
 
         <label htmlFor="remember">Remember:</label>
         <input
+         
           type="checkbox"
           id="remember"
           value={remember}
           onChange={updateRemember}
         />
-        <button disabled= {!username || !password}>Login</button>
+        <button disabled={!username || !password}>Login</button>
       </form>
     </>
   );
