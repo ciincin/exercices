@@ -1,14 +1,16 @@
-import Login from './Login'
-import './App.css'
+import Login from "./Login";
+import "./App.css";
+import InteractiveWelcome from "./InteractiveWelcome";
 
 function App() {
-
-
   return (
     <>
-      <Login />
+      <form action>
+        <InteractiveWelcome />
+        <Login />
+      </form>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
