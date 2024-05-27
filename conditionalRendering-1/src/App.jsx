@@ -1,8 +1,7 @@
-
-import './App.css'
-import  Welcome  from "./Welcome";
-import AlertClock from "./AlertClock"
-import {Counter} from "./Counter"
+import "./App.css";
+import Welcome from "./Welcome";
+import AlertClock from "./AlertClock";
+import { Counter } from "./Counter";
 import Clock from "./Clock";
 import MouseClicker from "./MouseClicker";
 
@@ -12,7 +11,7 @@ function App() {
       <h1>My awesome app</h1>
       <hr />
       <Welcome name="John" age={29} />
-      <AlertClock/>
+      <AlertClock />
       <Counter />
       <Clock />
       <MouseClicker />
@@ -20,4 +19,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
