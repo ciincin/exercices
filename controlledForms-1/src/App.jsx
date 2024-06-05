@@ -1,14 +1,14 @@
-import Login from "./Login";
+import Login from "./components/Login";
 import "./App.css";
-import InteractiveWelcome from "./InteractiveWelcome";
+import InteractiveWelcome from "./components/InteractiveWelcome";
+import UncontrolledLogin from "./components/UncontrolledLogin";
 
 function App() {
   return (
     <>
-      <form action>
-        <InteractiveWelcome />
-        <Login />
-      </form>
+      <InteractiveWelcome />
+      <Login />
+      <UncontrolledLogin />
     </>
   );
 }
