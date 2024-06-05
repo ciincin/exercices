@@ -1,6 +1,6 @@
 import "./App.css";
-import FocusableImput from "./FocusableInput";
-import Counter from "./Counter";
+import FocusableImput from "./components/FocusableInput";
+import Counter from "./components/Counter";
 
 function App() {
   return (
