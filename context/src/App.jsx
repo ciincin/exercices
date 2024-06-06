@@ -11,7 +11,6 @@ function App() {
 
   function handleSetLanguage(newLanguage) {
     setLanguage(newLanguage);
-    console.log(newLanguage);
   }
 
   return (
