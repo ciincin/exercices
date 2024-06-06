@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Container.css";
-function Container({ title }) {
+function Container({ title, children }) {
   const [isShowing, setIsShowing] = useState(false);
 
   function handleIsShowing() {
@@ -9,8 +9,8 @@ function Container({ title }) {
 
   return (
     <div className="div-style1">
-      <h1 onClick={handleIsShowing}>Title</h1>
-      {isShowing ? <p>{title}</p> : null}
+      <h1 onClick={handleIsShowing}>Title: {title}</h1>
+      {isShowing ? <div>{children} </div>: null}
     </div>
   );
 }
