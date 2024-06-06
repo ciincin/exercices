@@ -1,16 +1,30 @@
-import './App.css'
-import { useContext } from 'react'
-import Clock from './components/Clock'
+import { useState } from "react";
+import "./App.css";
+import Clock from "./components/clock/Clock";
+import { createContext } from "react";
+import HelloWord from "./components/helloWord/HelloWord";
+
+export const LanguageContext = createContext("en");
 
 function App() {
-  
-  const language = useContext()
+  const [language, setLanguage] = useState("en");
+
+  function handleSetLanguage(newLanguage) {
+    setLanguage(newLanguage);
+    console.log(newLanguage);
+  }
 
   return (
-    <>
-      <Clock />
-    </>
-  )
+    <div>
+      <button onClick={() => handleSetLanguage("it")}>IT</button>
+      <button onClick={() => handleSetLanguage("en")}>EN</button>
+
+      <LanguageContext.Provider value={language}>
+        <Clock />
+        <HelloWord />
+      </LanguageContext.Provider>
+    </div>
+  );
 }
 
-export default App
+export default App;
