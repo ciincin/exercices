@@ -1,8 +1,10 @@
 import { useState } from "react";
-import GithubUser2 from "./GithubUser2";
+import GithubUser from "./GithubUser";
 
 function GithubUsers() {
     const [username, setUsername]= useState("")
+    const [confirmedUsername, setConfirmedUsername] = useState("")
+    const [usernamesList, setUsernamesList] = useState([])
 
     function handleUsernameChange(e){
         setUsername(e.target.value)
@@ -10,7 +12,12 @@ function GithubUsers() {
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(username);
+        setConfirmedUsername(username)
+        if(username.trim() !== ""){
+          setUsernamesList([...usernamesList, username])
+          setUsername("")
+        }
+        // console.log(username);
     }
   return (
     <div>
@@ -18,7 +25,15 @@ function GithubUsers() {
           <input onChange={handleUsernameChange} value={username} type="text" placeholder="Enter a Github username" />
           <button>Submit</button>
         </form>
-        <GithubUser2 username={username} />
+        <ul>
+            {usernamesList.map((username, index)=> (
+              <li key={index}>
+                <GithubUser username={username} />
+              </li>
+            ))}
+
+        </ul>
+        
     </div>
   );
 }
