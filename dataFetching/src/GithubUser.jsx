@@ -14,7 +14,7 @@ function GithubUser({ username }) {
         setData(json);
         console.log(json);
       });
-  }, [username]);
+  }, [username]); 
 
   return (
     <div>
