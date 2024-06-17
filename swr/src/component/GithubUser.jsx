@@ -3,13 +3,11 @@ import useGithubUser from "./useGithubUser";
 
 function GithubUser({ username }) {
 
- const {data, load, error} = useGithubUser(username)
+ const {data, error, isLoading} = useGithubUser(username)
 
 
   return (
     <div>
-      {load && <p>Loading...</p>}
-      {error && <p>{`${error.status} ${error.message}`}</p>}
       {data ? (
         <div>
           <h1>{data.name}</h1>
@@ -19,6 +17,8 @@ function GithubUser({ username }) {
       ) : (
         <p>No user available</p>
       )}
+      {error && <p>{`${error.status} ${error.message}`}</p>}
+      {isLoading && <p>Loading...</p>}
       
       
     </div>
