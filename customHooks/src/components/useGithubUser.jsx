@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+
 import { useState } from "react";
 
-function useGithubUser({ username }) {
+function useGithubUser( username ) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [load, setLoad] = useState(false);
@@ -12,7 +12,10 @@ function useGithubUser({ username }) {
         setLoad(true);
         const response = await fetch(`http://api.github.com/users/${username}`);
         if (response.status !== 200) {
-          setError(new Error());
+          const errorBody = await response.json()
+          console.log(errorBody);
+          setError(errorBody);
+          return
         }
 
         const responseJson = await response.json();
@@ -27,14 +30,12 @@ function useGithubUser({ username }) {
     }
   }
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
 
   return {
     data: data,
     load: load,
     error: error,
+    fetchUserData: fetchUserData,
   };
 }
 

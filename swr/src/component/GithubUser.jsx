@@ -1,17 +1,15 @@
-import { useEffect } from "react";
 import useGithubUser from "./useGithubUser";
 
 
 function GithubUser({ username }) {
 
- const {data, load, error, fetchUserData} = useGithubUser(username)
+ const {data, load, error} = useGithubUser(username)
 
- useEffect(()=>{
-  fetchUserData()
- }, [username])
 
   return (
     <div>
+      {load && <p>Loading...</p>}
+      {error && <p>{`${error.status} ${error.message}`}</p>}
       {data ? (
         <div>
           <h1>{data.name}</h1>
@@ -21,8 +19,8 @@ function GithubUser({ username }) {
       ) : (
         <p>No user available</p>
       )}
-      {error && <p>{`${error.status} ${error.message}`}</p>}
-      {load && <p>Loading...</p>}
+      
+      
     </div>
   );
 }
