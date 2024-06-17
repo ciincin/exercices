@@ -3,11 +3,13 @@ import useGithubUser from "./useGithubUser";
 
 function GithubUser({ username }) {
 
- const {data, error, isLoading} = useGithubUser(username)
+ const {data, error, isLoading, refetch} = useGithubUser(username)
 
 
   return (
     <div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error.status ===404? "User not found": `An error occurred: ${error.message}`}</p>}
       {data ? (
         <div>
           <h1>{data.name}</h1>
@@ -15,11 +17,11 @@ function GithubUser({ username }) {
           <img src={data.avatar_url} alt="avatar" />
         </div>
       ) : (
-        <p>No user available</p>
+        <p>Please, enter a valid username</p>
       )}
-      {error && <p>{`${error.status} ${error.message}`}</p>}
-      {isLoading && <p>Loading...</p>}
       
+      
+      <button onClick={refetch}>Refetch Data</button>
       
     </div>
   );
