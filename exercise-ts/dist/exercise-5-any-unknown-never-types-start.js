@@ -4,10 +4,12 @@
 // Add the `any` type to fix the type errors in the following code.
 let currency = { name: "Indian rupee", code: "IN" };
 currency.code = "THB";
-currency.name = "Baht";
+currency = "Baht";
 // Fix the if statement in this function so the type of `value` is narrowed to `string`.
 function countryNameLength(value) {
-    console.log(value.length);
+    if (typeof value === "string") {
+        console.log(value.length);
+    }
 }
 countryNameLength("United States of America");
 // Fix the type error we see when calling this function.

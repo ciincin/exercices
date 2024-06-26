@@ -33,7 +33,7 @@ const countryA: CountryWithLanguages = {
 // defined above.
 //
 
-type CountryWithStatistics = Country &CountryStatistics
+type CountryWithStatistics = Country & CountryStatistics
 
 // Use the type alias syntax: type CountryWithStatistics = type;
 //
