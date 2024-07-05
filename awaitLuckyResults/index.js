@@ -1,4 +1,4 @@
-const players = ["Joe", "Caroline", "Sabrina"];
+const players = ["Tina", "Jorge", "Julien"];
 
 function luckyDraw(player) {
   return new Promise((resolve, reject) => {
