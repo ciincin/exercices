@@ -1,16 +1,8 @@
+
 const express = require("express");
 const router = express.Router();
+const planets = require("../data/planets.js")
 
-let planets = [
-  {
-    id: 1,
-    name: "Earth",
-  },
-  {
-    id: 2,
-    name: "Mars",
-  },
-];
 
 router.get("/", (req, res) => {
   res.send("Hello, World!");
