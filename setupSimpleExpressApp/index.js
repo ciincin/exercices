@@ -15,6 +15,10 @@ const routes = require("./routes/mainRoutes");
 app.use(express.json()); // Middleware to accept JSON from the client
 app.use(morgan("tiny")); // Middleware to log the client's requests
 app.use("/", routes); // Middleware to get all routes from mainRoutes.js
+app.use((err, req, res, next)=>{
+  console.error(err.stack)
+  res.status(500).send({error: err.message})
+})
 
 // Start the server
 
