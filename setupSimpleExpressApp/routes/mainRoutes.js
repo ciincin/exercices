@@ -1,26 +1,21 @@
-import { getAll, getOneById, create, updateById, deleteById } from "..controllers/planets.js";
-import { deleteById } from "../controllers/planets";
+const mainControllers= require("../controllers/mainControllers")
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+router.get("/", mainControllers.home);
 
 // Simple route to get all planets (for testing purposes)
-router.get("/planets", getAll);
+router.get("/planets", mainControllers.getPlanets);
 
-router.get("/planets/:id", getOneById);
+router.get("/planets/:id", mainControllers.GetPlanetById);
 
-router.post("/planets", create);
+router.post("/planets", mainControllers.createPlanet);
 
-router.put("/planets/:id", updateById);
+router.put("/planets/:id", mainControllers.updatePlanet);
 
-router.delete("/planets/:id", deleteById);
+router.delete("/planets/:id", mainControllers.deletePlanet);
 
-router.get("/error", async (req, res) => {
-  throw new Error("Async error");
-});
+router.get("/error", mainControllers.error);
 
 // // Error handling middleware (must be placed after all routes)
 // router.use((error, req, res, next) => {
