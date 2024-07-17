@@ -1,0 +1,92 @@
+let planets = require("../data/planets.js");
+const Joi = require("joi");
+const pgPromise = require("pg-promise");
+const db = pgPromise()("postgres://postgres:postgres@localhost:5432/postgres");
+
+async function setupDB() {
+  await db.none(`
+    DROP TABLE IF EXISTS planets;
+    CREATE TABLE planets
+    (id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+    )
+    `);
+
+  await db.none(`INSERT INTO planets (name) VALUES ('earth')`);
+  await db.none(`INSERT INTO planets (name) VALUES ('mars')`);
+
+  const planets2 = await db.many(`SELECT * FROM planets`);
+
+  console.log(planets2);
+}
+
+setupDB();
+
+const planetSchema = Joi.object({
+  id: Joi.number(),
+  name: Joi.string(),
+});
+
+const mainControllers = {
+  home: (req, res) => {
+    res.send("Hello, World!");
+  },
+  getPlanets: async(req, res) => {
+    const planetList =await db.many(`SELECT * FROM planets`);
+    res.status(200).json(planetList);
+  },
+  GetPlanetById: async(req, res) => {
+    const { id } = req.params;
+
+
+    const resquestedPlanet = await db.oneOrNone(`SELECT * FROM planets WHERE id = $1`, Number(id))
+    res.json(resquestedPlanet);
+  },
+  error: async (req, res) => {
+    throw new Error("Async error");
+  },
+
+  createPlanet: (req, res) => {
+    console.log(req.body);
+    const { name } = req.body;
+    const id = planets.length + 1;
+
+    const newPlanet = { id: id, name: name };
+
+    const validation = planetSchema.validate(newPlanet);
+    console.log(validation);
+
+    if (validation.error) {
+      res.status(400).json(validation.error.details[0].message);
+      return;
+    }
+
+    planets = [...planets, newPlanet];
+
+    res.status(201).json({ planets, msg: "success!" });
+    // res.status(201).json(planets)
+  },
+  updatePlanet: (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    // const changePlanet = planets.find((planet) => planet.id === Number(id));
+
+    planets.map((planet) => {
+      if (planet.id === Number(id)) {
+        planet.name = name;
+      }
+      return planet;
+    });
+
+    res.status(200).json({ planets });
+  },
+  deletePlanet: (req, res) => {
+    const { id } = req.params;
+    const newPlanets = planets.filter((planet) => {
+      return planet.id != Number(id);
+    });
+    res.status(200).json({ msg: "planet delete", newPlanets });
+  },
+};
+
+module.exports = mainControllers;
