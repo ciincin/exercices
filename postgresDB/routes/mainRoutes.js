@@ -1,6 +1,21 @@
 const mainControllers= require("../controllers/mainControllers")
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb)=>{
+        cb(null, "assets/")
+    },
+    fileName: (req, file, cb)=>{
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random()* 1E9)
+        cb(null, file.fieldname + "-" + uniqueSuffix + ".jpg")
+    }
+})
+
+const upload = multer({storage: storage})
 
 router.get("/", mainControllers.home);
 
@@ -16,6 +31,8 @@ router.put("/planets/:id", mainControllers.updatePlanet);
 router.delete("/planets/:id", mainControllers.deletePlanet);
 
 router.get("/error", mainControllers.error);
+
+router.post("/planets/:id/image", upload.single("planet-image"), mainControllers.addPlanetImage);
 
 // // Error handling middleware (must be placed after all routes)
 // router.use((error, req, res, next) => {

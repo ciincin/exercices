@@ -8,7 +8,8 @@ async function setupDB() {
     DROP TABLE IF EXISTS planets;
     CREATE TABLE planets
     (id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    image TEXT
     )
     `);
 
@@ -20,7 +21,7 @@ async function setupDB() {
   console.log(planets2);
 }
 
-// setupDB();
+setupDB();
 
 const planetSchema = Joi.object({
   name: Joi.string().alphanum(),
@@ -83,7 +84,7 @@ const mainControllers = {
       name,
     ]);
 
-    const planetChart = await db.many(`SSELECT * FROM planets ORDER BY id`);
+    const planetChart = await db.many(`SELECT * FROM planets ORDER BY id`);
     res.status(200).json({ planetChart, msg: "success!" });
   },
   deletePlanet: async (req, res) => {
@@ -94,6 +95,19 @@ const mainControllers = {
     const planetChart = await db.many(`SELECT * FROM planets ORDER BY id`);
     res.status(200).json({ msg: "planet delete", planetChart });
   },
+  addPlanetImage: async (req, res) => {
+    const { id } = req.params;
+    console.log(req);
+    res.send("ok")
+
+  //   await db.none(`UPDATE planets SET image = $2 WHERE id = $1`, [
+  //     Number(id),
+  //     image,
+  //   ]);
+
+  //   const planetChart = await db.many(`SELECT * FROM planets ORDER BY id`);
+  //   res.status(200).json({ planetChart, msg: "success!" });
+   },
 };
 
 module.exports = mainControllers;
