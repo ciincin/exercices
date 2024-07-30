@@ -2,6 +2,8 @@ const mainControllers= require("../controllers/mainControllers")
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const authorize = require("../authorize")
+const passport = require("../passport")
 
 
 
@@ -36,7 +38,7 @@ router.post("/planets/:id/image", upload.single("planet-image"), mainControllers
 
 router.post("/login", mainControllers.logIn);
 router.post("/signup", mainControllers.signUp)
-
+router.get("/logout", authorize, mainControllers.logOut)
 
 // // Error handling middleware (must be placed after all routes)
 // router.use((error, req, res, next) => {

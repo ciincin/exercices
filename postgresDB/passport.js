@@ -1,4 +1,4 @@
-import {db} from "./data/db"
+const db = require("./data/db.js")
 const dotenv = require("dotenv");
 dotenv.config();
 const SECRET = process.env.SECRET
@@ -11,7 +11,6 @@ passport.use(
         jwtFromRequest:passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
     }, async(payload, done)=>{
         const user = db.one(`SELECT * FROM users WHERE id=$1`, payload.id)
-        console.log(user);
         try {
             return user ? done(null, user): done(new Error("User not found."))
         } catch (error) {
@@ -19,3 +18,4 @@ passport.use(
         }
     })
 )
+
