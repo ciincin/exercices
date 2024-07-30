@@ -34,6 +34,9 @@ router.get("/error", mainControllers.error);
 
 router.post("/planets/:id/image", upload.single("planet-image"), mainControllers.addPlanetImage);
 
+router.post("/login", mainControllers.logIn);
+
+
 // // Error handling middleware (must be placed after all routes)
 // router.use((error, req, res, next) => {
 //   console.error(error.stack);

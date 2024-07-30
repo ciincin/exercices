@@ -1,27 +1,9 @@
 let planets = require("../data/planets.js");
 const Joi = require("joi");
-const pgPromise = require("pg-promise");
-const db = pgPromise()("postgres://postgres:postgres@localhost:5432/postgres");
-
-async function setupDB() {
-  await db.none(`
-    DROP TABLE IF EXISTS planets;
-    CREATE TABLE planets
-    (id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    image TEXT
-    )
-    `);
-
-  await db.none(`INSERT INTO planets (name) VALUES ('earth')`);
-  await db.none(`INSERT INTO planets (name) VALUES ('mars')`);
-
-  const planets2 = await db.many(`SELECT * FROM planets`);
-
-  console.log(planets2);
-}
-
-setupDB();
+const db = require("../data/db.js");
+const jwt = require("jsonwebtoken")
+const dotenv = require("dotenv");
+dotenv.config();
 
 const planetSchema = Joi.object({
   name: Joi.string().alphanum(),
@@ -97,17 +79,40 @@ const mainControllers = {
   },
   addPlanetImage: async (req, res) => {
     const { id } = req.params;
-    console.log(req);
-    res.send("ok")
+    console.log(req.file.path)
 
-  //   await db.none(`UPDATE planets SET image = $2 WHERE id = $1`, [
-  //     Number(id),
-  //     image,
-  //   ]);
+    await db.none(`UPDATE planets SET image = $2 WHERE id = $1`, [
+        Number(id),
+        req.file.path,
+      ]);
 
-  //   const planetChart = await db.many(`SELECT * FROM planets ORDER BY id`);
-  //   res.status(200).json({ planetChart, msg: "success!" });
-   },
+      const planetChart = await db.many(`SELECT * FROM planets ORDER BY id`);
+      res.status(200).json({ planetChart, msg: "success!" });
+  },
+  logIn: async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = await db.oneOrNone(`SELECT * FROM users WHERE username=$1`, username);
+
+    if (user && user.password === password) {
+      const payload = {
+        id: user.id,
+        username,
+      };
+
+      const SECRET = process.env.SECRET;
+
+      const token = jwt.sign(payload, SECRET);
+
+      console.log(token);
+
+      await db.none(`UPDATE users SET token=$2 WHERE id=$1`, [user.id, token])
+
+      res.status(200).json({ id:user.id, username, token });
+    } else {
+      res.status(400).json({ msg: "Username or password incorrect." });
+    }
+  },
 };
 
 module.exports = mainControllers;
