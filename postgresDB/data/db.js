@@ -7,7 +7,7 @@ async function setupDB() {
     CREATE TABLE planets
     (id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    image TEXT
+    image VARCHAR(255)
     );
 
     DROP TABLE IF EXISTS users;
@@ -15,7 +15,7 @@ async function setupDB() {
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    token TEXT
+    token VARCHAR(255)
     );
     `);
 
